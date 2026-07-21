@@ -366,3 +366,11 @@ input:focus-visible {
     border : none;
     border-radius: 10px;
 }
+
+.plus-coin {
+    background: var(--accent);
+}
+
+.minus-coin {
+    background : red;
+}
