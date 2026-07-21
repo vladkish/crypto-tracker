@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #0A0D12;
+  --surface: #141924;
+  --surface-alt: #1C2331;
+  --border: #262E3D;
+  --text: #EDEFF3;
+  --text-dim: #8B93A7;
+  --accent: #00E5A0;
+  --accent-dim: rgba(0, 229, 160, 0.14);
+  --loss: #FF5470;
+  --loss-dim: rgba(255, 84, 112, 0.14);
+  --delete: #E5484D;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- HEADER ---------- */
+
+.main-text {
+    font-size: 45px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 48px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: rgba(10, 13, 18, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+.logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--accent-dim);
+}
+
+.textCompany {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+}
+
+.textCompany::before {
+  content: '$ ';
+  color: var(--accent);
+}
+
+.form-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 64px 48px;
+}
+
+#form {
+  width: 100%;
+  max-width: 720px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+#form::before {
+  content: 'ADD ASSET';
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: var(--text-dim);
+}
+
+.block-frist-form,
+.block-second-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.block-frist-form div,
+.block-second-form div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+input[type="text"] {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="text"]::placeholder {
+  color: #4A5468;
+}
+
+input[type="text"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+/* submit button — form has no button in current markup,
+   styled in advance in case a <button type="submit"> is added */
+#form button[type="submit"] {
+  width: 100%;
+  margin-top: 8px;
+  padding: 16px;
+  background: var(--accent);
+  color: #06110C;
+  border: none;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+#form button[type="submit"]:hover {
+  filter: brightness(1.08);
+}
+
+/* ---------- COIN CARDS ---------- */
+
+.coin-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 0 48px 64px;
+}
+
+.card-coin {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px 24px 24px 28px;
+  overflow: hidden;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.card-coin::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent);
+}
+
+.card-coin:hover {
+  transform: translateY(-2px);
+  border-color: #333D50;
+}
+
+.img-coin {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--surface-alt);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.name-coin {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 0 0 14px;
+  color: var(--text-dim);
+}
+
+.price {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.price::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+.plus,
+.minus {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 2px 0;
+}
+
+.plus {
+  color: var(--accent);
+}
+
+.minus {
+  color: var(--loss);
+}
+
+.button-delete {
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  background: var(--delete);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.1s ease;
+}
+
+.button-delete:hover {
+  filter: brightness(1.1);
+}
+
+.button-delete:active {
+  transform: scale(0.98);
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 640px) {
+  .header {
+    padding: 16px 20px;
+  }
+
+  .form-section {
+    padding: 32px 20px;
+  }
+
+  #form {
+    padding: 28px 20px;
+  }
+
+  .block-frist-form,
+  .block-second-form {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .coin-section {
+    padding: 0 20px 40px;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- ACCESSIBILITY ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .price::after {
+    animation: none;
+  }
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* button change theme */
+.theme-block {
+    position:fixed;
+
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: 2px solid var(--accent);
+    border-radius: 100px;
+
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+
+    right: 0;
+    bottom: 0;
+
+    margin: 30px;
+
+    transform: scale(1.4);
+    transition: .1s ease;
+}
+
+.theme-block:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+    border: 4px solid var(--accent)
+}
