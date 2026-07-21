@@ -9,7 +9,7 @@ const PortfolioApp = {
     nameAllCoint: [],
 };
 
-// render remove
+// remove object.
 function renderRemove() {
     const sectionCard = document.querySelector('.coin-section');
     sectionCard.addEventListener('click', (e) => {
@@ -19,49 +19,62 @@ function renderRemove() {
     })
 }
 
+// add object.
 function renderPortfolio () {
-    for (const value of this.porfolio) {
 
-        // block.
-        const block = document.createElement("div");
-        block.classList.add('card-coin');
-        document.querySelector('.coin-section').append(block);
+    const proverka = (this.porfolio.countCoin == '' 
+        || this.porfolio.priceCoin == '' 
+        || this.porfolio.nameCoin == '' 
+        || this.porfolio.waitPriceCoin == '');
 
-        // h1.
-        const textBlock = document.createElement('h1');
-        textBlock.classList.add('name-coin');
-        textBlock.textContent = value.nameCoin;
-        block.append(textBlock);
+    console.log(proverka);
 
-        // price.
-        const price = document.createElement('p');
-        price.classList.add('price');
-        price.textContent = value.priceCoin;
-        block.append(price);
+    if (proverka) {
+        for (const value of this.porfolio) {
 
-        // count.
-        const count = document.createElement('p');
-        count.classList.add('count-coin');
-        count.textContent = `quantity ${value.countCoin}`;
-        block.append(count);
+            // block.
+            const block = document.createElement("div");
+            block.classList.add('card-coin');
+            document.querySelector('.coin-section').append(block);
 
-        // plus.
-        const minus = document.createElement('p');
-        minus.classList.add('minus-coin');
-        minus.textContent = '-----';
-        block.append(minus);
+            // h1.
+            const textBlock = document.createElement('h1');
+            textBlock.classList.add('name-coin');
+            textBlock.textContent = value.nameCoin;
+            block.append(textBlock);
 
-        // minus.
-        const plus = document.createElement('p');
-        plus.classList.add('plus-coin');
-        plus.textContent = '-----';
-        block.append(plus);
+            // price.
+            const price = document.createElement('p');
+            price.classList.add('price');
+            price.textContent = value.priceCoin;
+            block.append(price);
 
-        // button
-        const deleteButton = document.createElement('button');
-        deleteButton.classList.add('button-delete');
-        deleteButton.textContent = 'DELETE';
-        block.append(deleteButton);
+            // count.
+            const count = document.createElement('p');
+            count.classList.add('count-coin');
+            count.textContent = `quantity ${value.countCoin}`;
+            block.append(count);
+
+            // plus.
+            const minus = document.createElement('p');
+            minus.classList.add('minus-coin');
+            minus.textContent = '-----';
+            block.append(minus);
+
+            // minus.
+            const plus = document.createElement('p');
+            plus.classList.add('plus-coin');
+            plus.textContent = '-----';
+            block.append(plus);
+
+            // button
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('button-delete');
+            deleteButton.textContent = 'DELETE';
+            block.append(deleteButton);
+        }
+    } else {
+        alert('problem');
     }
 }   
 
