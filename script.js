@@ -5,19 +5,21 @@ const PortfolioApp = {
     porfolio: [],
     'renderCoin': renderCoin,
     'renderPortfolio': renderPortfolio,
+    'remove' : renderRemove,
     nameAllCoint: [],
 };
 
-// render coin and show.
-function renderPortfolio () {
-    for (const value of this.porfolio) {
-        const block = document.createElement("div");
-        block.classList.add('card-coin');
-    }
+// render remove
+function renderRemove() {
+    const sectionCard = document.querySelector('.coin-section');
+    sectionCard.addEventListener('click', (e) => {
+        if (e.target.textContent == 'DELETE') {
+            e.target.parentElement.remove();
+        }
+    })
 }
 
 function renderPortfolio () {
-
     for (const value of this.porfolio) {
 
         // block.
@@ -86,7 +88,10 @@ function renderCoin() {
         }
 
         form.reset();
+
+        
         PortfolioApp.renderPortfolio();
+        PortfolioApp.remove();
     });
 
 }
