@@ -1,14 +1,19 @@
 'use strict';
 
-// data.
-const porfolio = [];
-const nameAllCoint = [];
+const PortfolioApp = {
+    porfolio : [],
+    'render' : renderCoin,
+    nameAllCoint : [],
+};
 
 function renderCoin() {
 
     const form = document.querySelector('#form');
     
     form.addEventListener('submit', (e) => {
+
+        const {porfolio, nameAllCoint} = PortfolioApp;
+
         const coint = {};
         e.preventDefault();
 
@@ -23,10 +28,9 @@ function renderCoin() {
             nameAllCoint.push(document.querySelector(`[date-input="1"]`).value);
         }
 
-        console.log(porfolio);
         form.reset();
     });
-
 }
 
-renderCoin();
+PortfolioApp['render']();
+console.log(PortfolioApp.porfolio);
