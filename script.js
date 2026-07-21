@@ -8,6 +8,14 @@ const PortfolioApp = {
     nameAllCoint: [],
 };
 
+// render coin and show.
+function renderPortfolio () {
+    for (const value of this.porfolio) {
+        const block = document.createElement("div");
+        block.classList.add('card-coin');
+    }
+}
+
 function renderPortfolio () {
 
     for (const value of this.porfolio) {
@@ -32,7 +40,7 @@ function renderPortfolio () {
         // count.
         const count = document.createElement('p');
         count.classList.add('count-coin');
-        count.textContent = value.countCoin;
+        count.textContent = `quantity ${value.countCoin}`;
         block.append(count);
 
         // plus.
@@ -46,8 +54,14 @@ function renderPortfolio () {
         plus.classList.add('plus-coin');
         plus.textContent = '-----';
         block.append(plus);
+
+        // button
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('button-delete');
+        deleteButton.textContent = 'DELETE';
+        block.append(deleteButton);
     }
-}
+}   
 
 // form.
 function renderCoin() {

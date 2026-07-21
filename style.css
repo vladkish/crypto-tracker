@@ -365,6 +365,12 @@ input:focus-visible {
     font-size: 25px;
     border : none;
     border-radius: 10px;
+
+    transition: .1s ease;
+}
+
+.add-button:hover {
+    cursor: pointer;
 }
 
 .plus-coin {
