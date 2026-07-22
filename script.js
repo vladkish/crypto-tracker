@@ -68,6 +68,16 @@ function renderPortfolio (value) {
     deleteButton.textContent = 'DELETE';
     block.append(deleteButton);
 
+    // function change theme.
+    function changeThemeCardCoin() {
+        const button = document.querySelector('.theme-block');
+        button.addEventListener('click', () => {
+            const cardCoint = document.querySelector('.card-coin');
+            cardCoint.classList.toggle('card-coint-light');
+        })    
+    }
+
+    changeThemeCardCoin();
 }   
 
 // form.

@@ -1,0 +1,56 @@
+:root {
+  --bg: #0A0D12;
+  --surface: #141924;
+  --surface-alt: #1C2331;
+  --border: #262E3D;
+  --text: #EDEFF3;
+  --text-dim: #8B93A7;
+  --accent: #00E5A0;
+  --accent-dim: rgba(0, 229, 160, 0.14);
+  --loss: #FF5470;
+  --loss-dim: rgba(255, 84, 112, 0.14);
+  --delete: #E5484D;
+  --radius: 10px;
+}
+
+.light {
+    background: white;
+}
+
+.main-text-light {
+    color : black;
+}
+
+.form-light {
+    background-color: gray !important;
+    border : 3px solid var(--accent) !important;
+
+    input {
+        background: white;
+        border: none;
+        color : black
+    }
+}
+
+.theme-block-light {
+    background: black;
+}
+
+.card-coint-light {
+    color : black;
+    border: 2px solid var(--accent);
+    background: white;
+}
+
+.card-coint-light:hover {
+    border-color : var(--accent);
+}
+
+.header-light {
+    background-color: rgb(206, 205, 205);
+    color : black;
+
+    .logo {
+        transform: scale(1.3);
+    }
+}
