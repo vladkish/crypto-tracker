@@ -1,8 +1,14 @@
 'use strict';
 
+// status theme.
+let statusTheme = false;
+
 // function for change theme in a website
 const changeTheme = function() {
-    
+
+    // change theme.
+    statusTheme = true;
+
     // change button.
     const button = document.querySelector('.theme-block');
     
@@ -26,6 +32,13 @@ const changeTheme = function() {
         // header.
         const header = document.querySelector('.header');
         header.classList.toggle('header-light');
+
+        if (document.querySelector(".card-coin")) {
+            const cardCoin = document.querySelectorAll(".card-coin");
+            cardCoin.forEach(item => {
+                item.classList.toggle('card-coint-light');
+            });
+        }
     })
 
 };

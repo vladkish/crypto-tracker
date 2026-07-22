@@ -16,7 +16,7 @@ function renderRemove() {
         if (e.target.textContent == 'DELETE') {
             e.target.parentElement.remove();
         }
-    })
+    });
 }
 
 // add object.
@@ -24,7 +24,15 @@ function renderPortfolio (value) {
 
     // block.
     const block = document.createElement("div");
+    
     block.classList.add('card-coin');
+    if (!statusTheme) {
+        statusTheme = true;
+        block.classList.toggle('card-coint-light');
+    } else {
+        statusTheme = false;
+    }
+
     document.querySelector('.coin-section').append(block);
 
     // h1.
@@ -62,17 +70,6 @@ function renderPortfolio (value) {
     deleteButton.classList.add('button-delete');
     deleteButton.textContent = 'DELETE';
     block.append(deleteButton);
-
-    // function change theme.
-    function changeThemeCardCoin() {
-        const button = document.querySelector('.theme-block');
-        button.addEventListener('click', () => {
-            const cardCoint = document.querySelector('.card-coin');
-            cardCoint.classList.toggle('card-coint-light');
-        })    
-    }
-
-    changeThemeCardCoin();
 }   
 
 // form.
@@ -115,5 +112,4 @@ function renderCoin() {
         }
     });
 }
-console.log('test');
 renderCoin();
