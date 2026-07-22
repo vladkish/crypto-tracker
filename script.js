@@ -21,11 +21,7 @@ function renderRemove() {
 
 // add object.
 function renderPortfolio (value) {
-
-    // All element for work.
-    value['nameCoin'] = this.porfolio.nameCoin;
-    value['countCoin'] = this.porfolio.countCoin;
-    value['priceCount'] = this.porfolio.priceCoin;
+    console.dir([value, this.porfolio]);
 
     // block.
     const block = document.createElement("div");
@@ -88,7 +84,6 @@ function renderCoin() {
             || document.querySelector(`[date-input="3"]`).value == ''
             || document.querySelector(`[date-input="4"]`).value == ''
 
-
             if (!controlP) {
                 coint['nameCoin'] = document.querySelector(`[date-input="1"]`).value;
                 coint['countCoin'] = document.querySelector(`[date-input="2"]`).value;
@@ -97,19 +92,19 @@ function renderCoin() {
 
                 porfolio.push(coint);
                 nameAllCoint.push(document.querySelector(`[date-input="1"]`).value);
+
+                console.log(coint);
+
+                form.reset();
+                PortfolioApp.renderPortfolio(coint);
+                PortfolioApp.remove(); 
             } else {
                 alert('problem');
             }
-        } 
-
-        form.reset();
-
-        
-        console.log('test');
-
-        PortfolioApp.renderPortfolio(coint);
-        PortfolioApp.remove();
+        } else {
+            alert('we have that coin');
+        }
     });
-
 }
+console.log('test');
 renderCoin();
