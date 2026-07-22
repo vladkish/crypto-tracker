@@ -20,6 +20,14 @@
   user-select: none;
 }
 
+.logo-image {
+  transition: .1s ease;
+}
+
+.logo-image:hover {
+  transform: scale(1.1);
+}
+
 body {
   margin: 0;
   background: var(--bg);
