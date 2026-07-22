@@ -20,51 +20,54 @@ function renderRemove() {
 }
 
 // add object.
-function renderPortfolio () {
+function renderPortfolio (value) {
 
-    for (const value of this.porfolio) {
+    // All element for work.
+    value['nameCoin'] = this.porfolio.nameCoin;
+    value['countCoin'] = this.porfolio.countCoin;
+    value['priceCount'] = this.porfolio.priceCoin;
 
-        // block.
-        const block = document.createElement("div");
-        block.classList.add('card-coin');
-        document.querySelector('.coin-section').append(block);
+    // block.
+    const block = document.createElement("div");
+    block.classList.add('card-coin');
+    document.querySelector('.coin-section').append(block);
 
-        // h1.
-        const textBlock = document.createElement('h1');
-        textBlock.classList.add('name-coin');
-        textBlock.textContent = value.nameCoin;
-        block.append(textBlock);
+    // h1.
+    const textBlock = document.createElement('h1');
+    textBlock.classList.add('name-coin');
+    textBlock.textContent = value.nameCoin;
+    block.append(textBlock);
 
-        // price.
-        const price = document.createElement('p');
-        price.classList.add('price');
-        price.textContent = value.priceCoin;
-        block.append(price);
+    // price.
+    const price = document.createElement('p');
+    price.classList.add('price');
+    price.textContent = value.priceCoin;
+    block.append(price);
 
-        // count.
-        const count = document.createElement('p');
-        count.classList.add('count-coin');
-        count.textContent = `quantity ${value.countCoin}`;
-        block.append(count);
+    // count.
+    const count = document.createElement('p');
+    count.classList.add('count-coin');
+    count.textContent = `quantity ${value.countCoin}`;
+    block.append(count);
 
-        // plus.
-        const minus = document.createElement('p');
-        minus.classList.add('minus-coin');
-        minus.textContent = '-----';
-        block.append(minus);
+    // plus.
+    const minus = document.createElement('p');
+    minus.classList.add('minus-coin');
+    minus.textContent = '-----';
+    block.append(minus);
 
-        // minus.
-        const plus = document.createElement('p');
-        plus.classList.add('plus-coin');
-        plus.textContent = '-----';
-        block.append(plus);
+    // minus.
+    const plus = document.createElement('p');
+    plus.classList.add('plus-coin');
+    plus.textContent = '-----';
+    block.append(plus);
 
-        // button
-        const deleteButton = document.createElement('button');
-        deleteButton.classList.add('button-delete');
-        deleteButton.textContent = 'DELETE';
-        block.append(deleteButton);
-    }
+    // button
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('button-delete');
+    deleteButton.textContent = 'DELETE';
+    block.append(deleteButton);
+
 }   
 
 // form.
@@ -102,7 +105,9 @@ function renderCoin() {
         form.reset();
 
         
-        PortfolioApp.renderPortfolio();
+        console.log('test');
+
+        PortfolioApp.renderPortfolio(coint);
         PortfolioApp.remove();
     });
 
