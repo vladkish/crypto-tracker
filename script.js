@@ -12,11 +12,13 @@ const PortfolioApp = {
 // remove object.
 function renderRemove() {
     const sectionCard = document.querySelector('.coin-section');
+
     sectionCard.addEventListener('click', (e) => {
         if (e.target.textContent == 'DELETE') {
             e.target.parentElement.remove();
         }
     });
+
 }
 
 // add object.
@@ -172,7 +174,9 @@ const changeTheme = function() {
     // change button.
     const button = document.querySelector('.theme-block');
     
-    button.addEventListener('click', () => {
+
+    // function change.
+    function changeForEven() {
 
         // take all object for change theme.
         const body = document.body;
@@ -199,6 +203,24 @@ const changeTheme = function() {
                 item.classList.toggle('card-coint-light');
             });
         }
+    }
+
+    // evenLaptop.
+    button.addEventListener('click', () => {
+        changeForEven();
+    });
+
+    // evenTouch.
+    document.addEventListener('DOMContentLoaded', () => {
+        button.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            changeForEven();
+        });
+
+        button.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            console.log(true);
+        });
     })
 
 };
