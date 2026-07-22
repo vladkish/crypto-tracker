@@ -1,12 +1,15 @@
 'use strict';
 
 // data.
+let statusTheme = false;
+
 const PortfolioApp = {
     porfolio: [],
     'renderCoin': renderCoin,
     'renderPortfolio': renderPortfolio,
     'remove' : renderRemove,
     nameAllCoint: [],
+    'fetchPrices': fetchPrices,
 };
 
 // remove object.
@@ -44,7 +47,9 @@ function renderPortfolio (value) {
     // price.
     const price = document.createElement('p');
     price.classList.add('price');
-    price.textContent = value.priceCoin;
+    price.textContent = value.currentPrice !== null
+        ? `${value.currentPrice}$`
+        : 'цена недоступна';
     block.append(price);
 
     // count.
@@ -53,17 +58,36 @@ function renderPortfolio (value) {
     count.textContent = `quantity ${value.countCoin}`;
     block.append(count);
 
-    // plus.
+    // minus.
     const minus = document.createElement('p');
     minus.classList.add('minus-coin');
-    minus.textContent = '-----';
     block.append(minus);
 
-    // minus.
+    // plus.
     const plus = document.createElement('p');
     plus.classList.add('plus-coin');
-    plus.textContent = '-----';
     block.append(plus);
+
+    // work price
+    const buyPrice = parseFloat(value.priceCoin);
+    const amount = parseFloat(value.countCoin);
+    const currentPrice = value.currentPrice;
+
+    if (currentPrice !== null && !isNaN(buyPrice) && !isNaN(amount)) {
+        const profit = (currentPrice - buyPrice) * amount;
+        const profitPercent = ((currentPrice - buyPrice) / buyPrice) * 100;
+
+        if (profit >= 0) {
+            plus.textContent = `+${profit.toFixed(2)}$ (+${profitPercent.toFixed(1)}%)`;
+            minus.textContent = '-----';
+        } else {
+            minus.textContent = `${profit.toFixed(2)}$ (${profitPercent.toFixed(1)}%)`;
+            plus.textContent = '-----';
+        }
+    } else {
+        plus.textContent = '-----';
+        minus.textContent = '-----';
+    }
 
     // button
     const deleteButton = document.createElement('button');
@@ -76,7 +100,7 @@ function renderPortfolio (value) {
 function renderCoin() {
     const form = document.querySelector('#form');
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
 
         const { porfolio, nameAllCoint } = PortfolioApp;
 
@@ -91,6 +115,7 @@ function renderCoin() {
             || document.querySelector(`[date-input="4"]`).value == ''
 
             if (!controlP) {
+
                 coint['nameCoin'] = document.querySelector(`[date-input="1"]`).value;
                 coint['countCoin'] = document.querySelector(`[date-input="2"]`).value;
                 coint['priceCoin'] = document.querySelector(`[date-input="3"]`).value;
@@ -98,11 +123,15 @@ function renderCoin() {
 
                 porfolio.push(coint);
                 nameAllCoint.push(document.querySelector(`[date-input="1"]`).value);
-
-                console.log(coint);
-
                 form.reset();
+
+                const priceData = await PortfolioApp.fetchPrices(coint.nameCoin);
+                coint.currentPrice = (priceData && priceData[coint.nameCoin])
+                    ? priceData[coint.nameCoin].usd
+                    : null;
+
                 PortfolioApp.renderPortfolio(coint);
+
                 PortfolioApp.remove(); 
             } else {
                 alert('problem');
@@ -113,3 +142,22 @@ function renderCoin() {
     });
 }
 renderCoin();
+
+// API funciton.
+async function fetchPrices(coinIds) {
+    const url = `https://api.coingecko.com/api/v3/simple/price?ids=${coinIds}&vs_currencies=usd`;
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error : ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('You have problem wih price :', error);
+        return null
+    }
+}
