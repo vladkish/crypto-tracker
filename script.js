@@ -115,7 +115,7 @@ function renderCoin() {
 
             if (!controlP) {
 
-                coint['nameCoin'] = document.querySelector(`[date-input="1"]`).value;
+                coint['nameCoin'] = document.querySelector(`[date-input="1"]`).value.toLowerCase();
                 coint['countCoin'] = document.querySelector(`[date-input="2"]`).value;
                 coint['priceCoin'] = document.querySelector(`[date-input="3"]`).value;
                 coint['waitPriceCoin'] = document.querySelector(`[date-input="4"]`).value;
