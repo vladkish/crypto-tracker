@@ -7,6 +7,7 @@ const PortfolioApp = {
     'remove' : renderRemove,
     nameAllCoint: [],
     'fetchPrices': fetchPrices,
+    'renderUpdate' : renderUpdate,
 };
 
 // remove object.
@@ -19,6 +20,18 @@ function renderRemove() {
         }
     });
 
+}
+
+// render Update.
+function renderUpdate(coin) {
+    const buttonUpdate = document.querySelectorAll('.button-update');
+    
+    buttonUpdate.forEach(item => {
+        item.addEventListener('click', () => {
+            // need coin.
+            fetchPrices(coin);
+        });
+    })
 }
 
 // add object.
@@ -72,6 +85,7 @@ function renderPortfolio (value) {
     const amount = parseFloat(value.countCoin);
     const currentPrice = value.currentPrice;
 
+    // show. 
     if (currentPrice !== null && !isNaN(buyPrice) && !isNaN(amount)) {
         const profit = (currentPrice - buyPrice) * amount;
         const profitPercent = ((currentPrice - buyPrice) / buyPrice) * 100;
@@ -88,11 +102,17 @@ function renderPortfolio (value) {
         minus.textContent = '-----';
     }
 
-    // button
+    // button delete
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('button-delete');
     deleteButton.textContent = 'DELETE';
     block.append(deleteButton);
+
+    // button update.
+    const updateButton = document.createElement('button');
+    updateButton.classList.add('button-delete', 'button-update');
+    updateButton.textContent = 'UPdate';
+    block.append(updateButton);
 }   
 
 // form.
@@ -131,7 +151,9 @@ function renderCoin() {
 
                 PortfolioApp.renderPortfolio(coint);
 
-                PortfolioApp.remove(); 
+                PortfolioApp.remove();
+                PortfolioApp.renderUpdate(coint);
+
             } else {
                 alert('problem');
             }

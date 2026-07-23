@@ -389,3 +389,8 @@ input:focus-visible {
 .minus-coin {
     background : red;
 }
+
+.button-update {
+  background-color: plum;
+  color : white;
+}
