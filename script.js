@@ -37,15 +37,12 @@ function renderUpdate(coin) {
 // add object.
 function renderPortfolio (value) {
 
-    // block.
     const block = document.createElement("div");
-    
     block.classList.add('card-coin');
-    if (!statusTheme) {
-        statusTheme = true;
-        block.classList.toggle('card-coint-light');
-    } else {
-        statusTheme = false;
+
+    // проверяем текущую тему сайта напрямую, без отдельной переменной
+    if (document.body.classList.contains('light')) {
+        block.classList.add('card-coint-light');
     }
 
     document.querySelector('.coin-section').append(block);
@@ -184,18 +181,13 @@ async function fetchPrices(coinIds) {
 }
 
 // CHANGE THEME.
-
-// status theme.
-let statusTheme = false;
-
 const changeTheme = function() {
 
     // change theme.
-    statusTheme = true;
+    // statusTheme = true;
 
     // change button.
     const button = document.querySelector('.theme-block');
-    
 
     // function change.
     function changeForEven() {
